@@ -1,3 +1,20 @@
+<?php 
+//llamamos el archivo que contiene la conexion haca la base de datos.
+require_once 'configuracion.php';
+
+//creamos un consulta sql
+$sql = "SELECT * FROM blog_post ORDER BY id DESC";
+
+//preparamos la consulta, utilizando $pdo que viene como un objeto desde configuracion.php.
+$query = $pdo->prepare($sql);
+
+//ejecutamos la consulta
+$query->execute();
+
+//ponemos en una var el resultado de la consulta.
+$blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,14 +32,18 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="blog-post">
-					<h2>Sample Title</h2>
-					<p>Jan 1, 2020 by <a href="#">Alex</a></p>
-					<div class="blog-post-image">
-						<img src="images/slide3.png">
-					</div>
-					<div class="blog-post-content">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae aut, nulla magnam fuga porro assumenda consequuntur nostrum ipsam. Fugit nam non eius quae. At facilis dolore quo magni voluptatum, itaque!
-					</div>
+					<?php 
+						foreach ($blogPost as $blog) {
+							echo '<h2>'.$blog['titulo'] .'</h2>';
+							echo '<p>Jan 1, 2020 by <a href="#">Alex</a></p>';
+							echo '<div class="blog-post-image">';
+								echo '<img src="images/slide3.png">';
+							echo '</div>';
+							echo '<div class="blog-post-content">';
+								echo $blog['contenido'];
+							echo '</div>';
+						}
+					 ?>					
 				</div>
 			</div>
 			<div class="col-md-4">

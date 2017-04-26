@@ -1,7 +1,7 @@
 <?php 
 
 	$host = 'localhost';
-	$namedb = 'cursophp';
+	$namedb = 'dbblogprueba';
 	$user = 'root';
 	$pass = '';
 
