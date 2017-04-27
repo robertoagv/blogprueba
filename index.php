@@ -2,7 +2,8 @@
 //llamamos el archivo que contiene la conexion haca la base de datos.
 require_once 'configuracion.php';
 
-//creamos un consulta sql
+try {
+	//creamos un consulta sql
 $sql = "SELECT * FROM blog_post ORDER BY id DESC";
 
 //preparamos la consulta, utilizando $pdo que viene como un objeto desde configuracion.php.
@@ -13,6 +14,10 @@ $query->execute();
 
 //ponemos en una var el resultado de la consulta.
 $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
+	
+} catch (Exception $e) {
+	echo $e->getMessage();
+}
 
  ?>
 <!DOCTYPE html>
@@ -49,10 +54,12 @@ $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
 			<div class="col-md-4">
 			fsdfd</div>
 		</div>
-		<div class="blo-post-footer">
-			<footer>
-				copiright
-			</footer>
+		<div class="row">
+			<div class="col-md-12">
+				<footer class="blog-post-footer">
+					<p class="btn btn-default"><a href="admin/index.php">Admin</a></p>
+				</footer>
+			</div>
 		</div>
 	</div>
 </body>

@@ -4,3 +4,14 @@
 	border: 10px none black;
 	border-radius: 100px;
 }
+.prueba{
+	border: 2px solid red;
+}
+
+.blog-post-footer{
+	padding-top: 25px;
+	padding-bottom: 10px;
+}
+.blog-post-footer a{
+	text-decoration: none;
+}
