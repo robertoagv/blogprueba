@@ -48,7 +48,7 @@ $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
 						  	echo '<tr>';
 								echo '<td>' .$post['titulo'] .'</td>';
 								echo '<td>' .$post['contenido'] .'</td>';
-								echo '<td><a href="#">Update </a><a href="#">Eliminar</a></td>';
+								echo '<td><a href="update.php?id='.$post['id'] .'">Update </a><a href="delete.php?id=' .$post['id'] .'">Eliminar</a></td>';
 							echo '</tr>';
 						  }
 						 ?>	

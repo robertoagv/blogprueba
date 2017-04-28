@@ -1,21 +1,44 @@
+
 <?php 
-//requerimos del uso de la conexion de la BD.
+//llamamos la conexion de la BD.
 require_once '../configuracion.php';
-//creamos una consulta con mysql y creamos una var para verificar si se inserto.
+
+//creamos una consulta sql y creamos una var para el resultado.
 $result = false;
-$sql = "insert into blog_post(titulo, contenido) values(:titulo, :contenido)";
-//preparamos la consulta con $pdo y verificamos si el POST no viene vacio.
+$sql = "select * from blog_post where id=:id";
+
+$sqlupdate = "update blog_post set titulo=:titulo, contenido=:contenido where id=:id";
+
 if (!empty($_POST)) {
-	$query = $pdo->prepare($sql);
-	//ejecutamos la consuta con execute pasando un array associtivo con sus valores.
+	//preparamos la consulta
+	$query = $pdo->prepare($sqlupdate);
+	//executamos la consulta.
 	$result = $query->execute([
 		'titulo' => $_POST['titulo'],
-		'contenido' => $_POST['contenido']
+		'contenido' => $_POST['contenido'],
+		'id' => $_POST['id']
 		]);
+	$titulo = $_POST['titulo'];
+	$contenido = $_POST['contenido'];
+
+}else{
+	//preparamos la consulta
+	$query = $pdo->prepare($sql);
+	//executamos la consulta
+	$query->execute([
+		'id' => $_GET['id']
+		]);
+	//obtnemos la fila que viene en la consulta.
+	$blogPost = $query->fetch(PDO::FETCH_ASSOC);
+
+	$titulo = $blogPost['titulo'];
+	$contenido = $blogPost['contenido'];
 }
 
 
+
  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,25 +55,27 @@ if (!empty($_POST)) {
 		</div>
 		<div class="row">
 			<div class="col-md-8">
+				
 				<div class="blog-post">
 				<?php 
 					if ($result) {
-						echo '<div class="alert alert-success">Post Inserted</div>';
+						echo '<div class="alert alert-success">Post Updated</div>';
 					}
 				 ?>
-					<form action="insertblog.php" method="post">
+					<form action="update.php" method="post">
 						<div class="form-group">
 							<div class="input-group">
 								<label for="titulo">Titulo</label>
-								<input type="text" name="titulo" id="titulo" placeholder="Titulo" class="form-control" required>
+								<input type="text" name="titulo" id="titulo" placeholder="Titulo" class="form-control" value="<?php echo $titulo ?>" required>
+								<textarea name="contenido" id="contenido" cols="35" rows="5" class="form-control"  required><?php echo $contenido ?></textarea>
 							</div>
 							<label for="contenido">Contenido</label>
 							<div class="input-group">
-								<textarea name="contenido" id="contenido" cols="35" rows="5" class="form-control" required></textarea>
+								<input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
 							</div>
 							<br>
 							<div class="input-group bajar">
-								<input type="submit" value="Insert" class="btn btn-primary ">
+								<input type="submit" value="Update" class="btn btn-primary ">
 							</div>
 						</div>
 					</form>		
