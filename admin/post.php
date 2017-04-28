@@ -34,7 +34,7 @@ $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
 		<div class="row">
 			<div class="col-md-8">
 				<div class="blog-post-create">
-					<a href="#" class="btn btn-primary">Create New</a>
+					<a href="insertblog.php" class="btn btn-primary">Create New</a>
 				</div>
 				<div class="blog-post">
 					<table class="table table-striped">
