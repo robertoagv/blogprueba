@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-1">
 				<ul class="nav nav-pills">
-					<li ><a href="post.php">Create New Blog</a></li>
+					<li ><a href="post.php">Acciones</a></li>
 					<li><a href="#">Nuevo</a></li>
 					<li><a href="#">Nuevo</a></li>
 				</ul>
@@ -29,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<footer class="blog-post-footer">
-					<p class="btn btn-default"><a href="../index.php">Blog Post</a></p>
+					<p><a href="../index.php" class="btn btn-default">Blog Post</a></p>
 				</footer>
 			</div>
 		</div>

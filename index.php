@@ -57,7 +57,7 @@ $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
 		<div class="row">
 			<div class="col-md-12">
 				<footer class="blog-post-footer">
-					<p class="btn btn-default"><a href="admin/index.php">Admin</a></p>
+					<p><a href="admin/index.php" class="btn btn-default">Admin</a></p>
 				</footer>
 			</div>
 		</div>
